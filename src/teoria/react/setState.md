@@ -1,34 +1,37 @@
-# "Entendendo o método `setState` do React
+# O que é o método setState em React e como ele é utilizado?
 
-O método `setState` é um método presente em componentes React que permite atualizar o estado do componente. Ele recebe como primeiro parâmetro uma variável que representa o novo estado do componente, que pode ser do tipo `string`, `number` ou `symbol`. Ele também pode receber como segundo parâmetro uma função de callback, que é uma função que será executada após o estado do componente ser atualizado. O setState é uma forma de atualizar o estado de um componente de maneira síncrona ou assíncrona, e é importante para a reatividade do React, pois permite que o componente se atualize automaticamente quando o estado muda.
+`setState` é um método utilizado em aplicações React para atualizar o estado de um componente. O método recebe dois parâmetros:
 
-Por exemplo, imagine que você tem um componente que exibe uma lista de itens e deseja adicionar um novo item à lista. Você pode fazer isso usando o `setState` da seguinte maneira:
+* `state`: um objeto que representa as novas propriedades do estado do componente.
+* `callback (opcional)`: uma função que é chamada depois que o estado é atualizado.
+
+O método `setState` é usado para atualizar o estado do componente de maneira síncrona ou assíncrona. Quando o método é chamado, ele atualiza o estado do componente e, em seguida, chama a função de retorno de chamada (se fornecida). Isso permite que você execute alguma lógica após o estado ser atualizado.
+
+Exemplo de uso:
 
 ```
 class MyComponent extends React.Component {
-  state = {
-    items: ['item 1', 'item 2', 'item 3']
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      count: 0
+    };
+  }
 
-  addItem = () => {
-    this.setState({
-      items: [...this.state.items, 'novo item']
+  handleClick = () => {
+    this.setState({ count: this.state.count + 1 }, () => {
+      console.log('O novo contador é', this.state.count);
     });
   }
 
   render() {
     return (
-      <div>
-        <button onClick={this.addItem}>Adicionar item</button>
-        <ul>
-          {this.state.items.map(item => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </div>
+      <button onClick={this.handleClick}>
+        Clique aqui para aumentar o contador
+      </button>
     );
   }
 }
 ```
 
-Ao clicar no botão, a função addItem é chamada e o setState é usado para atualizar o estado do componente, adicionando um novo item à lista. Isso faz com que o componente seja renderizado novamente, exibindo a nova lista de itens para o usuário.
+Neste exemplo, quando o botão é clicado, o método `handleClick` é chamado. Dentro do método, o método `setState` é chamado para atualizar o estado do componente, incrementando o valor do contador em 1. Depois que o estado é atualizado, a função de retorno de chamada é chamada e exibe o novo valor do contador no console.
