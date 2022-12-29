@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "./styles/global-styles.css";
-import { HomeClass } from "./templates/HomeClass";
+import { Home } from "./templates/Home";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <HomeClass numberToIncrement={10} />
+    <Home />
   </React.StrictMode>
 );

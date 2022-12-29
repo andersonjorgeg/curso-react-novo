@@ -63,7 +63,7 @@ export const Home = () => {
         {!searchValue && (
           <Button
             text="Carregue mais"
-            click={loadMorePosts}
+            onClick={loadMorePosts}
             disabled={noMorePosts}
           />
         )}
